@@ -2,6 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 import Header from './Header';
 import Movie from './Movie';
 import Search from './Search';
+import Loader from './Loader';
 import './App.css';
 
 const MOVIE_API_URL = 'http://www.omdbapi.com/?s=man&apikey=44fdb66b';
@@ -86,7 +87,7 @@ function App() {
       </p>
       <div className="movies">
         {loading && !errorMessage 
-          ? <span>Loading ...</span>
+          ? <Loader />
           : errorMessage 
               ? <div className="errorMessage">{errorMessage}</div>
               : movies.map((movie, index) => (
