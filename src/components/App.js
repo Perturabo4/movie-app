@@ -1,45 +1,15 @@
-import React, { useReducer, useEffect } from 'react';
+import React, {useEffect, useReducer, Fragment } from 'react';
 import Header from './Header';
 import Movie from './Movie';
 import Search from './Search/';
 import Loader from './Loader/';
-import './App.css';
 import Footer from './Footer';
+import {reducer, initialState} from './reducer/';
+import './App.css';
+
 
 const MOVIE_API_URL = 'http://www.omdbapi.com/?s=man&apikey=44fdb66b';
 
-const initialState = {
-  loading: true,
-  movies: [],
-  errorMessage: null
-}
-
-const reducer = (state, action) => {
-
-  switch (action.type) {
-    case "SEARCH_MOVIE_REQUEST":
-      return {
-        ...state,
-        loading: true,
-        errorMessage: null
-      };
-    case "SEARCH_MOVIE_SUCCESS":
-        return {
-          ...state,
-          loading: false,
-          movies: action.payload
-        };
-    case "SEARCH_MOVIE_FAILURE":
-        return {
-          ...state,
-          loading: false,
-          errorMessage: action.error
-        };
-    default: 
-        return state;
-  }
-
-}
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -80,23 +50,26 @@ function App() {
   const { movies, errorMessage, loading } = state;
 
   return (
-    <div className="App">
-      <Header text="HOOKED" />
-      <Search search={search} />
-      <p className="App-intro">
-        Sharing a few of our favorite movies
-      </p>
-      <div className="movies">
-        {loading && !errorMessage 
-          ? <Loader />
-          : errorMessage 
-              ? <div className="errorMessage">{errorMessage}</div>
-              : movies.map((movie, index) => (
-                <Movie key={`${index}-${movie.Title}`} movie={movie} />
-              ))}
+    <Fragment>
+      <div className="App">
+        <Header text="HOOKED" />
+        <Search search={search} />
+        <p className="App-intro">
+          Sharing a few of our favorite movies
+        </p>
+        <div className="movies">
+          {loading && !errorMessage 
+            ? <Loader />
+            : errorMessage 
+                ? <div className="errorMessage">{errorMessage}</div>
+                : movies.map((movie, index) => (
+                  <Movie key={`${index}-${movie.Title}`} movie={movie} />
+                ))}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+      
+    </Fragment>
   );
 }
 
