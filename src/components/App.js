@@ -1,14 +1,15 @@
-import React, {useEffect, useReducer, Fragment } from 'react';
+import React, {useEffect, useReducer} from 'react';
 import Header from './Header';
 import Movie from './Movie';
 import Search from './Search/';
 import Loader from './Loader/';
+import Pagination from './Pagination/'
 import Footer from './Footer';
 import {reducer, initialState} from './reducer/';
 import './App.css';
 
 
-const MOVIE_API_URL = 'http://www.omdbapi.com/?s=man&apikey=44fdb66b';
+const MOVIE_API_URL = 'http://www.omdbapi.com/?s=man&page=1&apikey=44fdb66b';
 
 
 function App() {
@@ -30,9 +31,10 @@ function App() {
       type: "SEARCH_MOVIE_REQUEST"
     })
 
-    fetch(`http://www.omdbapi.com/?s=${searchValue}&apikey=44fdb66b`)
+    fetch(`http://www.omdbapi.com/?s=${searchValue}&page=2&apikey=44fdb66b`)
       .then(response => response.json())
       .then(jsonResponse => {
+        console.log(jsonResponse);
         if(jsonResponse.Response === 'True') {
           dispatch({
               type: "SEARCH_MOVIE_SUCCESS",
@@ -50,7 +52,6 @@ function App() {
   const { movies, errorMessage, loading } = state;
 
   return (
-    <Fragment>
       <div className="App">
         <Header text="HOOKED" />
         <Search search={search} />
@@ -66,10 +67,9 @@ function App() {
                   <Movie key={`${index}-${movie.Title}`} movie={movie} />
                 ))}
         </div>
+        <Pagination />
         <Footer />
       </div>
-      
-    </Fragment>
   );
 }
 

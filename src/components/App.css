@@ -32,7 +32,6 @@ body {
     font-size: calc(10px + 2vmin);
     color: white;
     padding: 20px;
-    cursor: pointer;
 }
 
 /* Movie component style */
