@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
+import './Search.css';
 
+
+const styles = {
+    input: {
+        padding: '0 4px'
+    }
+}
 const Search = (props) => {
     const [searchValue, setSearchValue] = useState('');
 
@@ -23,6 +30,7 @@ const Search = (props) => {
                 type="text"
                 value={searchValue}
                 onChange={handleSearchInputChanges}
+                style={styles.input}
             />
             <input 
                 type="submit"
