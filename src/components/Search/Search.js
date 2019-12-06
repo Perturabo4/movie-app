@@ -29,6 +29,7 @@ const Search = (props) => {
             <input 
                 type="text"
                 value={searchValue}
+                placeholder={'Type name of movie'}
                 onChange={handleSearchInputChanges}
                 style={styles.input}
             />

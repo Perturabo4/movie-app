@@ -4,6 +4,7 @@ import Movie from './Movie';
 import Search from './Search/';
 import Loader from './Loader/';
 import './App.css';
+import Footer from './Footer';
 
 const MOVIE_API_URL = 'http://www.omdbapi.com/?s=man&apikey=44fdb66b';
 
@@ -94,6 +95,7 @@ function App() {
                 <Movie key={`${index}-${movie.Title}`} movie={movie} />
               ))}
       </div>
+      <Footer />
     </div>
   );
 }
