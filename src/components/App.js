@@ -69,7 +69,7 @@ function App() {
           });
         } else {
           dispatch({
-            type: "SEARCH_MOVIE_SUCCESS",
+            type: "SEARCH_MOVIE_FAILURE",
             error: jsonResponse.Error
           });
         }
