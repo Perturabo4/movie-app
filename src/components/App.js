@@ -3,7 +3,7 @@ import Header from './Header';
 import Movie from './Movie';
 import Search from './Search/';
 import Loader from './Loader/';
-import Pagination from './Pagination/'
+import Pagination from './Pagination/';
 import Footer from './Footer';
 import {reducer, initialState} from './reducer/';
 import './App.css';
@@ -21,7 +21,10 @@ function App() {
       .then(jsonResponse => {
           dispatch({
             type: "SEARCH_MOVIE_SUCCESS",
-            payload: jsonResponse.Search
+            payload: {
+              search: jsonResponse.Search,
+              totalResults: jsonResponse.totalResults
+            }
           });
       });
   }, []);
@@ -38,7 +41,10 @@ function App() {
         if(jsonResponse.Response === 'True') {
           dispatch({
               type: "SEARCH_MOVIE_SUCCESS",
-              payload: jsonResponse.Search
+              payload: {
+                search: jsonResponse.Search,
+                totalResults: jsonResponse.totalResults
+              }
           });
         } else {
           dispatch({
@@ -49,7 +55,7 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading } = state;
+  const { movies, errorMessage, loading, page, totalResults } = state;
 
   return (
       <div className="App">
@@ -67,7 +73,9 @@ function App() {
                   <Movie key={`${index}-${movie.Title}`} movie={movie} />
                 ))}
         </div>
-        <Pagination />
+        <Pagination 
+          page={page}
+          totalResults={totalResults}/>
         <Footer />
       </div>
   );

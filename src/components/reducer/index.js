@@ -1,7 +1,9 @@
 const initialState = {
     loading: true,
     movies: [],
-    errorMessage: null
+    errorMessage: null,
+    page: 1,
+    totalResults: 0
   }
   
   const reducer = (state, action) => {
@@ -17,7 +19,8 @@ const initialState = {
           return {
             ...state,
             loading: false,
-            movies: action.payload
+            movies: action.payload.search,
+            totalResults: action.payload.totalResults
           };
       case "SEARCH_MOVIE_FAILURE":
           return {
