@@ -3,7 +3,7 @@ import Header from './Header';
 import Movie from './Movie';
 import Search from './Search/';
 import Loader from './Loader/';
-import Pagination from './Pagination/';
+import Pages from './Pages';
 import Footer from './Footer';
 import {reducer, initialState} from './reducer/';
 import './App.css';
@@ -34,7 +34,7 @@ function App() {
       type: "SEARCH_MOVIE_REQUEST"
     })
 
-    fetch(`http://www.omdbapi.com/?s=${searchValue}&page=2&apikey=44fdb66b`)
+    fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${state.page}&apikey=44fdb66b`)
       .then(response => response.json())
       .then(jsonResponse => {
         console.log(jsonResponse);
@@ -72,10 +72,8 @@ function App() {
                 : movies.map((movie, index) => (
                   <Movie key={`${index}-${movie.Title}`} movie={movie} />
                 ))}
-        </div>
-        <Pagination 
-          page={page}
-          totalResults={totalResults}/>
+        </div> 
+        <Pages page={page} totalResults={totalResults} onChange={(n) => dispatch({type: "SET_PAGE", payload: n})} />
         <Footer />
       </div>
   );
