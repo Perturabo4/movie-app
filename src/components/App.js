@@ -5,7 +5,7 @@ import Search from './Search/';
 import Loader from './Loader/';
 import Pages from './Pages';
 import Footer from './Footer';
-import {reducer, initialState} from './reducer/';
+import {reducer, initialState, ContextApp} from './reducer/';
 import './App.css';
 
 
@@ -29,12 +29,12 @@ function App() {
       });
   }, []);
 
-  const search = searchValue => {
+  const search = (searchValue, page) => {
     dispatch({
       type: "SEARCH_MOVIE_REQUEST"
     })
-
-    fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${state.page}&apikey=44fdb66b`)
+    console.log(`${searchValue} ${page}`);
+    fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`)
       .then(response => response.json())
       .then(jsonResponse => {
         console.log(jsonResponse);
@@ -55,9 +55,10 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading, page, totalResults } = state;
+  const { movies, errorMessage, loading} = state;
 
   return (
+    <ContextApp.Provider value={{state, dispatch}}>
       <div className="App">
         <Header text="HOOKED" />
         <Search search={search} />
@@ -73,9 +74,10 @@ function App() {
                   <Movie key={`${index}-${movie.Title}`} movie={movie} />
                 ))}
         </div> 
-        <Pages page={page} totalResults={totalResults} onChange={(n) => dispatch({type: "SET_PAGE", payload: n})} />
+        <Pages search={search} />
         <Footer />
       </div>
+    </ContextApp.Provider>
   );
 }
 

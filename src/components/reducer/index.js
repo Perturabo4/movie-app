@@ -1,9 +1,14 @@
+import {createContext} from 'react';
+
+const ContextApp = createContext();
+
 const initialState = {
     loading: true,
     movies: [],
     errorMessage: null,
     page: 1,
-    totalResults: 0
+    totalResults: 0,
+    searchValue: ''
   }
   
   const reducer = (state, action) => {
@@ -33,10 +38,15 @@ const initialState = {
           ...state,
           page: action.payload
         }
+      case "SET_SEARCH_VALUE":
+        return {
+          ...state,
+          searchValue: action.payload
+        }
       default: 
           return state;
     }
   
   }
 
-  export {reducer, initialState};
+  export {reducer, initialState, ContextApp};

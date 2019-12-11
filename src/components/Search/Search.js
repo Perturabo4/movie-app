@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
+import {ContextApp} from '../reducer/';
 import './Search.css';
 
 
@@ -8,27 +9,27 @@ const styles = {
     }
 }
 const Search = (props) => {
-    const [searchValue, setSearchValue] = useState('');
+    const {state, dispatch} = useContext(ContextApp);
 
     const handleSearchInputChanges = (e) => {
-        setSearchValue(e.target.value);
+        dispatch({type: "SET_SEARCH_VALUE", payload: e.target.value})
     }
 
-    const resetInputField = () => {
-        setSearchValue("");
+    const resetPages = () => {
+        dispatch({type: "SET_PAGE", payload: 1});
     }
 
     const callSearchFunction = (e) => {
         e.preventDefault();
-        props.search(searchValue);
-        resetInputField();
+        resetPages();
+        props.search(state.searchValue);
     }
 
     return (
         <form className="search">
             <input 
                 type="text"
-                value={searchValue}
+                value={state.searchValue}
                 placeholder={'Type name of movie'}
                 onChange={handleSearchInputChanges}
                 style={styles.input}
