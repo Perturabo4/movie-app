@@ -1,28 +1,27 @@
 import React, {useContext} from 'react';
 import {ContextApp} from '../reducer/';
 import {Pagination} from 'antd';
-
 import 'antd/dist/antd.css';
 import './Pages.css';
 
 const Pages = ({search}) => {
-
+    const styles = {div: {marginBottom: '20px'}}
     const {state, dispatch} = useContext(ContextApp);
     const {searchValue, page, totalResults} = state;
-    const count = Math.ceil(totalResults * 1 / 10);
-    const onChange = (pageNumber) => {
+    const onChange = (pageNumber, pageCount) => {
         dispatch({type: "SET_PAGE", payload: pageNumber});
         dispatch({type: "SEARCH_MOVIE_REQUEST"});
-        search(searchValue, page);
+        search(searchValue, pageNumber);
+        console.log(`${pageNumber} of ${pageCount} `);
     }
-    
+
     return (
-        <div>
-            {`Page ${page} of ${count}`}
+        <div style={styles.div}>
             <Pagination 
                 showQuickJumper 
+                defaultPageSize={10}
                 defaultCurrent={page} 
-                total={count} 
+                total={totalResults * 1} 
                 onChange={onChange} 
             />
         </div>

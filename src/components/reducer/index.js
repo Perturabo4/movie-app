@@ -8,7 +8,7 @@ const initialState = {
     errorMessage: null,
     page: 1,
     totalResults: 0,
-    searchValue: ''
+    searchValue: 'man'
   }
   
   const reducer = (state, action) => {
