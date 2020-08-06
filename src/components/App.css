@@ -45,7 +45,10 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1em;
-    align-items: center;
+}
+
+.lds-roller {
+    justify-self: center;
 }
 
 .App-header h2 {

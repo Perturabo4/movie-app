@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer} from 'react';
 import Header from './Header';
-import Movie from './Movie';
+import MoviesContainer from './Movies-container';
 import Search from './Search/';
 import Loader from './Loader/';
 import Pages from './Pages';
@@ -33,7 +33,7 @@ function App() {
     dispatch({
       type: "SEARCH_MOVIE_REQUEST"
     })
-    console.log(`${searchValue} ${page}`);
+
     fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`)
       .then(response => response.json())
       .then(jsonResponse => {
@@ -57,6 +57,7 @@ function App() {
 
   const { movies, errorMessage, loading} = state;
 
+
   return (
     <ContextApp.Provider value={{state, dispatch}}>
       <div className="App">
@@ -65,18 +66,17 @@ function App() {
         <p className="App-intro">
           Несколько наших любимых фильмов
         </p>
-        <div className="movies">
-          {loading && !errorMessage 
+        
+          {
+          loading && !errorMessage 
             ? <Loader />
             : errorMessage 
                 ? <div className="errorMessage">{errorMessage}</div>
-                : movies.map((movie, index) => (
-                  <Movie key={`${index}-${movie.Title}`} movie={movie} />
-                ))}
+                : <MoviesContainer movies={movies}/>
+          }
         </div> 
         <Pages search={search} />
         <Footer />
-      </div>
     </ContextApp.Provider>
   );
 }

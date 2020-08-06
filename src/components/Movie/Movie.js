@@ -9,7 +9,7 @@ const Movie = ({ movie }) => {
 
     return (
         <div className="movie">
-            <h2>{movie.Title}</h2>
+             <h4>{movie.Title}</h4>
             <div className="img-container">
                 <img 
                     src={poster} 

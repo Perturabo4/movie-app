@@ -16,7 +16,7 @@ const Pages = ({search}) => {
     }
 
     return (
-        <div style={styles.div}>
+        <div style={styles.div} className="pagination-container">
             <Pagination 
                 showQuickJumper 
                 defaultPageSize={10}
