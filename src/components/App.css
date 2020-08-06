@@ -35,10 +35,17 @@ body {
 }
 
 /* Movie component style */
-.movies {
+/* .movies {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+} */
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1em;
+    align-items: center;
 }
 
 .App-header h2 {
@@ -57,7 +64,11 @@ body {
 
 .movie {
     padding: 5px 25px 10px 25px;
-    max-width: 25%;
+}
+
+.movie img {
+    width: 100%;
+    max-width: 300px;
 }
 
 .errorMessage {
@@ -94,7 +105,7 @@ input[type="submit"]:hover {
     min-width: 170px;
 }
 
-@media screen and (min-width: 694px) and (max-width: 915px) {
+/* @media screen and (min-width: 694px) and (max-width: 915px) {
     .movie {
       max-width: 33%;
     }
@@ -112,4 +123,4 @@ input[type="submit"]:hover {
       max-width: 100%;
       margin: auto;
     }
-  }
+  } */

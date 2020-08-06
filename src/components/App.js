@@ -60,10 +60,10 @@ function App() {
   return (
     <ContextApp.Provider value={{state, dispatch}}>
       <div className="App">
-        <Header text="HOOKED" />
+        <Header text="Поиск фильмов" />
         <Search search={search} />
         <p className="App-intro">
-          Sharing a few of our favorite movies
+          Несколько наших любимых фильмов
         </p>
         <div className="movies">
           {loading && !errorMessage 
