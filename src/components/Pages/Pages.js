@@ -12,9 +12,8 @@ const Pages = ({search}) => {
         dispatch({type: "SET_PAGE", payload: pageNumber});
         dispatch({type: "SEARCH_MOVIE_REQUEST"});
         search(searchValue, pageNumber);
-        console.log(`${pageNumber} of ${pageCount} `);
     }
-
+    console.log(page);
     return (
         <div style={styles.div} className="pagination-container">
             <Pagination 
