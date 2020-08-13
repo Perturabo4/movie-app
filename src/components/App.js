@@ -37,7 +37,6 @@ function App() {
     fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`)
       .then(response => response.json())
       .then(jsonResponse => {
-        console.log(jsonResponse);
         if(jsonResponse.Response === 'True') {
           dispatch({
               type: "SEARCH_MOVIE_SUCCESS",
@@ -55,7 +54,7 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading, firstVisit} = state;
+  const { movies, errorMessage, loading } = state;
 
 
   return (
