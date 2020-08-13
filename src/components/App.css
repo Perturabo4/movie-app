@@ -34,16 +34,9 @@ body {
     padding: 20px;
 }
 
-/* Movie component style */
-/* .movies {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-} */
-
 .movies {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 1em;
 }
 
@@ -107,23 +100,3 @@ input[type="submit"]:hover {
     width: 40%;
     min-width: 170px;
 }
-
-/* @media screen and (min-width: 694px) and (max-width: 915px) {
-    .movie {
-      max-width: 33%;
-    }
-  }
-  
-  @media screen and (min-width: 652px) and (max-width: 693px) {
-    .movie {
-      max-width: 50%;
-    }
-  }
-  
-  
-  @media screen and (max-width: 651px) {
-    .movie {
-      max-width: 100%;
-      margin: auto;
-    }
-  } */
