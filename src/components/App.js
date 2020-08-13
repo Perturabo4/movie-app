@@ -55,7 +55,7 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading} = state;
+  const { movies, errorMessage, loading, firstVisit} = state;
 
 
   return (
@@ -63,10 +63,9 @@ function App() {
       <div className="App">
         <Header text="Поиск фильмов" />
         <Search search={search} />
-        <p className="App-intro">
-          Несколько наших любимых фильмов
-        </p>
-        
+            <p className="App-intro">
+              Несколько популярных фильмов
+            </p>
           {
           loading && !errorMessage 
             ? <Loader />

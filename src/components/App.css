@@ -40,10 +40,6 @@ body {
     grid-gap: 1em;
 }
 
-.lds-roller {
-    justify-self: center;
-}
-
 .App-header h2 {
     margin: 0;
 }
@@ -63,6 +59,7 @@ body {
 }
 
 .movie img {
+    object-fit: fill ;
     width: 100%;
     max-width: 300px;
 }

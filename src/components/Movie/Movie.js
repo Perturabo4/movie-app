@@ -9,14 +9,10 @@ const Movie = ({ movie }) => {
 
     return (
         <div className="movie">
-             <h4>{movie.Title}</h4>
-            <div className="img-container">
-                <img 
-                    src={poster} 
-                    alt={movie.Title}
-                />
-            </div>
-            <p>({movie.Year})</p>
+            <figure>
+                <img src={poster}  alt={movie.Title} />
+                <figcaption>{movie.Title} ({movie.Year})</figcaption>
+            </figure>
         </div>
     );                   
 };
