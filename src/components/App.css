@@ -101,6 +101,11 @@ body {
     margin-top: 10px;
 }
 
+.search-input__label {
+    display: inline-flex;
+    flex-direction: column;
+}
+
 input[type="submit"] {
     padding: 5px;
     background-color: transparent;

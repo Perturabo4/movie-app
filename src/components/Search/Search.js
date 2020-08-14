@@ -27,8 +27,8 @@ const Search = (props) => {
 
     return (
         <form className="search">
-            <label>
-                Введите слово (только латинские символы)
+            <label className="search-input__label">
+                Введите слово для поиска (только латинские символы)
                 <input 
                         type="text"
                         value={state.searchValue}
