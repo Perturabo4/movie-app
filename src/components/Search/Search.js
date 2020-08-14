@@ -30,7 +30,7 @@ const Search = (props) => {
             <input 
                 type="text"
                 value={state.searchValue}
-                placeholder={'Type name of movie'}
+                placeholder={'Введите слово для поиска фильмов'}
                 onChange={handleSearchInputChanges}
                 style={styles.input}
             />

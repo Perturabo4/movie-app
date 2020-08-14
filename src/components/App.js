@@ -2,6 +2,7 @@ import React, {useEffect, useReducer} from 'react';
 import Header from './Header';
 import MoviesContainer from './Movies-container';
 import Search from './Search/';
+import AppIntro from './App-intro';
 import Loader from './Loader/';
 import Pages from './Pages';
 import Footer from './Footer';
@@ -38,6 +39,7 @@ function App() {
       .then(response => response.json())
       .then(jsonResponse => {
         if(jsonResponse.Response === 'True') {
+          dispatch({type: "INCREASE_SEARCH_COUNT"});
           dispatch({
               type: "SEARCH_MOVIE_SUCCESS",
               payload: {
@@ -54,7 +56,7 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading } = state;
+  const { movies, errorMessage, loading, searchCount } = state;
 
 
   return (
@@ -63,9 +65,7 @@ function App() {
       <Header text="Поиск фильмов" />
         <div className="App">
             <Search search={search} />
-                <p className="App-intro">
-                  Несколько популярных фильмов
-                </p>
+              <AppIntro searchCount={searchCount}/>
               {
               loading && !errorMessage 
                 ? <Loader />
@@ -75,7 +75,7 @@ function App() {
               }
             </div>
           </div> 
-          <Pages search={search} />
+          {!errorMessage && <Pages search={search} />}
           <Footer />
     </ContextApp.Provider>
   );
