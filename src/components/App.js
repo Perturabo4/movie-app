@@ -59,22 +59,24 @@ function App() {
 
   return (
     <ContextApp.Provider value={{state, dispatch}}>
-      <div className="App">
-        <Header text="Поиск фильмов" />
-        <Search search={search} />
-            <p className="App-intro">
-              Несколько популярных фильмов
-            </p>
-          {
-          loading && !errorMessage 
-            ? <Loader />
-            : errorMessage 
-                ? <div className="errorMessage">{errorMessage}</div>
-                : <MoviesContainer movies={movies}/>
-          }
-        </div> 
-        <Pages search={search} />
-        <Footer />
+      <div className="wrapper">
+      <Header text="Поиск фильмов" />
+        <div className="App">
+            <Search search={search} />
+                <p className="App-intro">
+                  Несколько популярных фильмов
+                </p>
+              {
+              loading && !errorMessage 
+                ? <Loader />
+                : errorMessage 
+                    ? <div className="errorMessage">{errorMessage}</div>
+                    : <MoviesContainer movies={movies}/>
+              }
+            </div>
+          </div> 
+          <Pages search={search} />
+          <Footer />
     </ContextApp.Provider>
   );
 }
