@@ -8,8 +8,7 @@ const initialState = {
     errorMessage: null,
     page: 1,
     totalResults: 0,
-    searchValue: 'man',
-    year: null
+    searchValue: 'man'
   }
   
   const reducer = (state, action) => {
@@ -43,11 +42,6 @@ const initialState = {
         return {
           ...state,
           searchValue: action.payload
-        }
-      case "SET_YEAR_VALUE":
-        return {
-          ...state,
-          year: action.payload
         }
       default: 
           return state;

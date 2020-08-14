@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import {DatePicker} from 'antd';
 import {ContextApp} from '../reducer/';
 import './Search.css';
 
@@ -35,7 +34,6 @@ const Search = (props) => {
                 onChange={handleSearchInputChanges}
                 style={styles.input}
             />
-            <DatePicker picker="year" mode="year"/>
             <input 
                 type="submit"
                 value="Поиск"
