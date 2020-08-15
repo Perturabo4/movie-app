@@ -28,6 +28,7 @@ const Search = (props) => {
         resetPages();
         props.search(state.searchValue);
         resetInputValue();
+        
     }
 
     return (

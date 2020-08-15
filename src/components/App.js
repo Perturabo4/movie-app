@@ -67,7 +67,7 @@ function App() {
   };
 
 
-  const { movies, errorMessage, loading, searchCount, cashedSearchValue } = state;
+  const { movies, errorMessage, loading, searchCount, cashedSearchValue} = state;
 
   return (
     <ContextApp.Provider value={{state, dispatch}}>
