@@ -8,7 +8,8 @@ const initialState = {
     errorMessage: null,
     page: 1,
     totalResults: 0,
-    searchValue: 'man',
+    searchValue: '',
+    cashedSearchValue: '',
     searchCount: 0
   }
   
@@ -43,6 +44,11 @@ const initialState = {
         return {
           ...state,
           searchValue: action.payload
+        }
+      case "SET_CASHED_VALUE":
+        return {
+          ...state,
+          cashedSearchValue: action.payload
         }
       case "INCREASE_SEARCH_COUNT":
         return {

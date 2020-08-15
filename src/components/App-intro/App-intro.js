@@ -2,10 +2,10 @@ import React from 'react';
 import './App-intro.css';
 
 
-const AppIntro = ({searchCount}) => {
+const AppIntro = ({searchCount, cashedSearchValue}) => {
 
     const text = searchCount > 0
-            ? "Результаты поиска: " 
+            ? `Результаты поиска "${cashedSearchValue}" : ` 
             : "Несколько популярных фильмов";
 
     return (

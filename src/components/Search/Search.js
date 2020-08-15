@@ -15,6 +15,10 @@ const Search = (props) => {
         dispatch({type: "SET_SEARCH_VALUE", payload: e.target.value})
     }
 
+    const resetInputValue = () => {
+        dispatch({type: "SET_SEARCH_VALUE", payload: ''})
+    }
+
     const resetPages = () => {
         dispatch({type: "SET_PAGE", payload: 1});
     }
@@ -23,6 +27,7 @@ const Search = (props) => {
         e.preventDefault();
         resetPages();
         props.search(state.searchValue);
+        resetInputValue();
     }
 
     return (

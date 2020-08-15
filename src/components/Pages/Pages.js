@@ -7,13 +7,13 @@ import './Pages.css';
 const Pages = ({search}) => {
     const styles = {div: {marginBottom: '20px'}}
     const {state, dispatch} = useContext(ContextApp);
-    const {searchValue, page, totalResults} = state;
+    const {cashedSearchValue, page, totalResults} = state;
     const onChange = (pageNumber, pageCount) => {
         dispatch({type: "SET_PAGE", payload: pageNumber});
         dispatch({type: "SEARCH_MOVIE_REQUEST"});
-        search(searchValue, pageNumber);
+        search(cashedSearchValue, pageNumber);
     }
-    console.log(page);
+    
     return (
         <div style={styles.div} className="pagination-container">
             <Pagination 

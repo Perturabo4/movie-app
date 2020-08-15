@@ -9,8 +9,8 @@ import Footer from './Footer';
 import {reducer, initialState, ContextApp} from './reducer/';
 import './App.css';
 
-
-const MOVIE_API_URL = 'http://www.omdbapi.com/?s=man&page=1&apikey=44fdb66b';
+const START_VALUE = 'man';
+const MOVIE_API_URL = `http://www.omdbapi.com/?s=${START_VALUE}&page=1&apikey=44fdb66b`;
 
 
 function App() {
@@ -27,13 +27,23 @@ function App() {
               totalResults: jsonResponse.totalResults
             }
           });
+
+          dispatch({
+            type: "SET_CASHED_VALUE",
+            payload: START_VALUE
+          });
       });
   }, []);
 
   const search = (searchValue, page) => {
     dispatch({
-      type: "SEARCH_MOVIE_REQUEST"
-    })
+      type: "SEARCH_MOVIE_REQUEST",
+    });
+
+    dispatch({
+      type: "SET_CASHED_VALUE",
+      payload: searchValue
+    });
 
     fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`)
       .then(response => response.json())
@@ -57,7 +67,7 @@ function App() {
   };
 
 
-  const { movies, errorMessage, loading, searchCount } = state;
+  const { movies, errorMessage, loading, searchCount, cashedSearchValue } = state;
 
   return (
     <ContextApp.Provider value={{state, dispatch}}>
@@ -65,7 +75,10 @@ function App() {
       <Header text="Поиск фильмов" />
         <div className="App">
             <Search search={search} />
-              <AppIntro searchCount={searchCount}/>
+              <AppIntro 
+                searchCount={searchCount}
+                cashedSearchValue={cashedSearchValue}
+              />
               {
               loading && !errorMessage 
                 ? <Loader />
