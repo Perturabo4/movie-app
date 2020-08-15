@@ -2,6 +2,7 @@ import React, {useEffect, useReducer} from 'react';
 import Header from './Header';
 import MoviesContainer from './Movies-container';
 import Search from './Search/';
+import AppIntro from './App-intro';
 import Loader from './Loader/';
 import Pages from './Pages';
 import Footer from './Footer';
@@ -37,8 +38,8 @@ function App() {
     fetch(`http://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`)
       .then(response => response.json())
       .then(jsonResponse => {
-        console.log(jsonResponse);
         if(jsonResponse.Response === 'True') {
+          dispatch({type: "INCREASE_SEARCH_COUNT"});
           dispatch({
               type: "SEARCH_MOVIE_SUCCESS",
               payload: {
@@ -55,27 +56,27 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading } = state;
 
+  const { movies, errorMessage, loading, searchCount } = state;
 
   return (
     <ContextApp.Provider value={{state, dispatch}}>
-      <div className="App">
-        <Header text="Поиск фильмов" />
-        <Search search={search} />
-            <p className="App-intro">
-              Несколько популярных фильмов
-            </p>
-          {
-          loading && !errorMessage 
-            ? <Loader />
-            : errorMessage 
-                ? <div className="errorMessage">{errorMessage}</div>
-                : <MoviesContainer movies={movies}/>
-          }
-        </div> 
-        <Pages search={search} />
-        <Footer />
+      <div className="wrapper">
+      <Header text="Поиск фильмов" />
+        <div className="App">
+            <Search search={search} />
+              <AppIntro searchCount={searchCount}/>
+              {
+              loading && !errorMessage 
+                ? <Loader />
+                : errorMessage 
+                    ? <div className="errorMessage">{errorMessage}</div>
+                    : <MoviesContainer movies={movies}/>
+              }
+            </div>
+          </div> 
+          {!errorMessage && <Pages search={search} />}
+          <Footer />
     </ContextApp.Provider>
   );
 }

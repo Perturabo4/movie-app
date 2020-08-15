@@ -8,7 +8,8 @@ const initialState = {
     errorMessage: null,
     page: 1,
     totalResults: 0,
-    searchValue: 'man'
+    searchValue: 'man',
+    searchCount: 0
   }
   
   const reducer = (state, action) => {
@@ -42,6 +43,11 @@ const initialState = {
         return {
           ...state,
           searchValue: action.payload
+        }
+      case "INCREASE_SEARCH_COUNT":
+        return {
+          ...state,
+          searchCount: state.searchCount + 1
         }
       default: 
           return state;

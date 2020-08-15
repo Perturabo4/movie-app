@@ -8,11 +8,12 @@ const Movie = ({ movie }) => {
                    : movie.Poster;
 
     return (
-        <div className="movie">
-            <figure>
+        <div className="movie" title={movie.Title}>
+            <h4 className="movie-title">{movie.Title}</h4>
+            <div className="img-container">
                 <img src={poster}  alt={movie.Title} />
-                <figcaption>{movie.Title} ({movie.Year})</figcaption>
-            </figure>
+            </div>
+            <span>({movie.Year})</span>
         </div>
     );                   
 };

@@ -27,16 +27,19 @@ const Search = (props) => {
 
     return (
         <form className="search">
-            <input 
-                type="text"
-                value={state.searchValue}
-                placeholder={'Type name of movie'}
-                onChange={handleSearchInputChanges}
-                style={styles.input}
-            />
+            <label className="search-input__label">
+                Введите слово для поиска (только латинские символы)
+                <input 
+                        type="text"
+                        value={state.searchValue}
+                        placeholder={'Введите слово для поиска фильмов'}
+                        onChange={handleSearchInputChanges}
+                        style={styles.input}
+                    />
+            </label>
             <input 
                 type="submit"
-                value="SEARCH"
+                value="Поиск"
                 onClick={callSearchFunction}
             />
         </form>
