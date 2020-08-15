@@ -55,7 +55,7 @@ function App() {
       });
   };
 
-  const { movies, errorMessage, loading, firstVisit} = state;
+  const { movies, errorMessage, loading } = state;
 
 
   return (
