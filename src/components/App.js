@@ -10,7 +10,7 @@ import { reducer, initialState, ContextApp } from "./reducer/";
 import "./App.css";
 
 const START_VALUE = "man";
-const MOVIE_API_URL = `http://www.omdbapi.com/?s=${START_VALUE}&page=1&apikey=44fdb66b`;
+const MOVIE_API_URL = `https://www.omdbapi.com/?s=${START_VALUE}&page=1&apikey=44fdb66b`;
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -45,7 +45,7 @@ function App() {
     });
 
     fetch(
-      `http://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`
+      `https://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=44fdb66b`
     )
       .then((response) => response.json())
       .then((jsonResponse) => {
